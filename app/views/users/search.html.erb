@@ -1,0 +1,8 @@
+
+<div class="ml-3 pl-3 mr-3 pr-3">
+  <% @matching_users.each do |user| %>
+    <h3><%= link_to user.first_name, user_path(user) %> </h3>
+  <% end %>
+</div>
+
+

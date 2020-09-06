@@ -1,0 +1,8 @@
+<div class="container ml-3" >
+  <h3>Call a meeting!</h3>
+  <%= simple_form_for [@user, @meeting] do |f| %>
+    <%= f.input :start, as: :string  %>
+    <%= f.input :end, as: :string %>
+    <%= f.submit class:'btn btn-primary'%>
+  <% end %>
+</div>

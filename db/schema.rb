@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_121231) do
+ActiveRecord::Schema.define(version: 2020_09_05_095955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 2020_09_04_121231) do
   create_table "meetings", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
+    t.bigint "requester_id", null: false
+    t.bigint "accepter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_1_id"
-    t.integer "user_2_id"
+    t.index ["accepter_id"], name: "index_meetings_on_accepter_id"
+    t.index ["requester_id"], name: "index_meetings_on_requester_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,10 +47,12 @@ ActiveRecord::Schema.define(version: 2020_09_04_121231) do
     t.string "first_name"
     t.string "last_name"
     t.integer "phone_no"
-    t.string "interests"
+    t.string "interests", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "availabilities", "users"
+  add_foreign_key "meetings", "users", column: "accepter_id"
+  add_foreign_key "meetings", "users", column: "requester_id"
 end

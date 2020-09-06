@@ -1,0 +1,13 @@
+
+<div class="container">
+  <h1><%= @user.first_name %> <%= @user.last_name %> </h1>
+  <p>Matching interests:</p>
+  <%@matching_interests.each do |interest|  %>
+  <p><%= interest %></p>
+  <% end %>
+  <p>Available to meet:</p>
+  <% @matching_times.each do |time| %>
+    <p> from <%= time.start %> to <%= time.end %> </p>
+  <% end %>
+  <%= link_to "Call a meeting", new_user_meeting_path(@user), class:'btn btn-primary' %>
+</div>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, presence: { message: 'Please give your first name' }
-  has_many :meetings
-  has_many :availabilities
+  has_many :requester_meetings, class_name: 'Meeting', foreign_key: 'requester_id', dependent: :destroy
+  has_many :accepter_meetings, class_name: 'Meeting', foreign_key: 'accepter_id', dependent: :destroy
+  has_many :availabilities, dependent: :destroy
 end

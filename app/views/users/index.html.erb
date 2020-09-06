@@ -1,0 +1,13 @@
+<div class="container text-center">
+  <h1 style="margin-top: 5%;">Explore all our members</h1>
+</div>
+
+<div class="container text-center">
+  <%= link_to "Filter by common interests and time availability that matches yours", search_users_path, class: "btn btn-primary border-radius-search-btn"  %>
+</div>
+
+<div class="ml-3 pl-3 mr-3 pr-3">
+  <% @users.each do |user| %>
+    <h3><%= link_to user.first_name, user_path(user) %></h3>
+  <% end %>
+</div>
