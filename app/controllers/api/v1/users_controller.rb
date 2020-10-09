@@ -14,6 +14,19 @@ module Api
         @matching_times = available?(@user, current_user)
       end
 
+      def search
+        @users = User.all
+        authorize @users
+        @matching_users = []
+        @users.each do |user|
+          if matching_interests?(user.interests, current_user.interests).length.positive? && available?(user, current_user).length.positive?
+            @matching_users << user
+          end
+        end
+        # authorize @matching_users
+      end
+
+
       private
 
       def set_user
