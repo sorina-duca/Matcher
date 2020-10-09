@@ -39,19 +39,19 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def matching_interests?(interests_user, interests_searcher)
-    interests_searcher.select { |interest| interests_user.include?(interest) }
-  end
+  # def matching_interests?(interests_user, interests_searcher)
+  #   interests_searcher.select { |interest| interests_user.include?(interest) }
+  # end
 
-  def available?(user, searcher)
-    if searcher.availabilities.any? == false || user.availabilities.any? == false
-      []
-    else
-      src_av_start = searcher.availabilities.map(&:start)
-      src_av_end = searcher.availabilities.map(&:end)
-      user.availabilities.select do |av|
-        src_av_end.any? { |a| av.start < a } && src_av_start.any? { |s| av.end > s }
-      end
-    end
-  end
+  # def available?(user, searcher)
+  #   if searcher.availabilities.any? == false || user.availabilities.any? == false
+  #     []
+  #   else
+  #     src_av_start = searcher.availabilities.map(&:start)
+  #     src_av_end = searcher.availabilities.map(&:end)
+  #     user.availabilities.select do |av|
+  #       src_av_end.any? { |a| av.start < a } && src_av_start.any? { |s| av.end > s }
+  #     end
+  #   end
+  # end
 end

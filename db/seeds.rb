@@ -12,7 +12,6 @@ require 'time'
 #     phone_no: Faker::PhoneNumber.cell_phone_with_country_code,
 #     interests: ['dancing', 'running', 'reading'].sample([1,2,3].sample)
 #     )
-#   puts "User #{user.id} was created"
 # end
 
 # SEED AVAILABILITIES

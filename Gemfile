@@ -36,6 +36,8 @@ gem 'brakeman'
 
 gem 'rubocop-rails', require: false
 
+gem 'simple_token_authentication'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'

@@ -20,4 +20,22 @@ class ApplicationController < ActionController::Base
   #   flash[:alert] = "You are not authorized to perform this action."
   #   redirect_to(root_path)
   # end
+
+  def matching_interests?(interests_user, interests_searcher)
+    interests_searcher.select { |interest| interests_user.include?(interest) }
+  end
+
+  def available?(user, searcher)
+    if searcher.availabilities.any? == false || user.availabilities.any? == false
+      []
+    else
+      src_av_start = searcher.availabilities.map(&:start)
+      src_av_end = searcher.availabilities.map(&:end)
+      user.availabilities.select do |av|
+        src_av_end.any? { |a| av.start < a } && src_av_start.any? { |s| av.end > s }
+      end
+    end
+  end
+
+  helper_method :matching_interests, :available
 end
